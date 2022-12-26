@@ -6,10 +6,11 @@ var grid = d3.select("#grid")
     .attr("height", "510px");
 
 let createGrid = function () {
-    let xPos = 1; 
-    let yPos = 1;
+    var xPos = 0; 
+    let yPos = 0;
     let width = 50;
     let height = 50;
+    let clicks = 0;
     for (let row = 0; row < 10; row++) {
         for (let row = 0; row < 10; row++) {
             d3.select("svg").append("rect")
@@ -20,19 +21,23 @@ let createGrid = function () {
                 .attr("height", height)
                 .style("fill", "#fff")
                 .style("stroke", "#222")
+                .attr("clicks", clicks)
                 .on('click', function () {
-                    console.log('square')
-                    // this.clicks++;
-                    // if ((d.click) % 4 == 0) { d3.select(this).style("fill", "#fff"); }
-                    // if ((d.click) % 4 == 1) { d3.select(this).style("fill", "#2C93E8"); }
-                    // if ((d.click) % 4 == 2) { d3.select(this).style("fill", "#F56C4E"); }
-                    // if ((d.click) % 4 == 3) { d3.select(this).style("fill", "#838690"); }
+                    console.log(this)
+                    clicks++;
+                    if ((clicks) % 4 == 0) { d3.select(this).style("fill", "#fff"); }
+                    if ((clicks) % 4 == 1) { d3.select(this).style("fill", "blue"); }
+                    if ((clicks) % 4 == 2) { d3.select(this).style("fill", "red"); }
+                    if ((clicks) % 4 == 3) { d3.select(this).style("fill", "green"); }
                 });
+            clicks = 0
             xPos += 50
         }
-        xPos = 1
+        xPos = 0    
         yPos += 50
     }
 }
 
 createGrid();
+
+console.log(createGrid)
